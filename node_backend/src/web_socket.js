@@ -19,7 +19,7 @@ const startWebSocketServer = () => {
 
 
 let lastUrl = null;
-let id = 1;
+export let id = 1;
 const processPayload = (payload) => {
   const { type, url, data } = payload;
   console.log("*".repeat(80));
@@ -36,6 +36,7 @@ const processPayload = (payload) => {
     dataFilePath = path.join(dataFolderName, id.toString());
     fs.writeJsonSync(dataFilePath, jsonData, { flag: 'a' });
   } else {
+    id ++;
     dataFilePath = path.join(dataFolderName, id.toString());
     fs.writeJsonSync(dataFilePath, jsonData); // This would empty the files if there's already content
   }
